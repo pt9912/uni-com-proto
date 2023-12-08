@@ -18,7 +18,6 @@ message UCReference {
 }
 
 message UCDictionary {
-	// Represents a structured value.
 	map<string, UCValue> value = 1;
     string type_name = 2;
 }
@@ -82,7 +81,6 @@ message UCEnumFlags {
 }
 
 message UCValue {
-	// The kind of value.
 	oneof kind {
 		double number_value = 1;
 		string string_value = 2;

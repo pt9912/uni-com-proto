@@ -4,7 +4,6 @@ import "uni.com.message.proto";
 
 package uni.com.server;
 
-
 service UCServer {
     rpc Call(stream uni.com.message.UCMessage) returns (stream uni.com.message.UCMessage) {}
 }
