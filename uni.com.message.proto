@@ -18,7 +18,7 @@ message UCReference {
 }
 
 message UCDictionary {
-	map<string, UCValue> value = 1;
+    map<string, UCValue> value = 1;
     string type_name = 2;
 }
 
@@ -39,11 +39,11 @@ message UCCustomArray {
 }
 
 message UCGeometry {
-	bytes value = 1;
+    bytes value = 1;
 }
 
 message UCEWktGeometry {
-	string value = 1;
+    string value = 1;
 }
 
 message UCIntArray {
@@ -81,13 +81,13 @@ message UCEnumFlags {
 }
 
 message UCValue {
-	oneof kind {
-		double number_value = 1;
-		string string_value = 2;
+    oneof kind {
+        double number_value = 1;
+        string string_value = 2;
         UCReference ref_value = 3;
-		bool bool_value = 4;
+        bool bool_value = 4;
         UCCustom custom_value = 5;
-		sfixed64 long_value = 6;
+        sfixed64 long_value = 6;
         sfixed32 int_value = 7;
         UCEnum enum_value = 8;
         UCEnumFlags enumflags_value = 9;
@@ -105,5 +105,5 @@ message UCValue {
         
         UCCustomArray custom_array = 19;
         //Todo: TimestampArray
-	}
+    }
 }
