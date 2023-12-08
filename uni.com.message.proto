@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package uni.com.message;
+
+message UCMessage {
+    string type = 1;
+    string id = 3;
+    UCReference value = 4;
+}
+
+message UCReference {
+    oneof kind {
+        UCDictionary value = 1;
+        UCDictionaryArray array = 2;
+    }
+}
+
+message UCDictionary {
+	// Represents a structured value.
+	map<string, UCValue> value = 1;
+    string type_name = 2;
+}
+
+message UCDictionaryArray {
+    repeated UCDictionary values = 1;
+    string type_name = 2;
+}
+
+message UCCustom {
+    oneof kind {
+        UCGeometry geometry_value = 2;
+        UCEWktGeometry ewkt_geometry_value = 3;
+    }
+}
+
+message UCCustomArray {
+    repeated UCCustom values = 1;
+}
+
+message UCGeometry {
+	bytes value = 1;
+}
+
+message UCEWktGeometry {
+	string value = 1;
+}
+
+message UCIntArray {
+    repeated sfixed32 values = 1;
+}
+
+
+message UCLongArray {
+    repeated sfixed64 values = 1;
+}
+
+message UCFloatArray {
+    repeated float values = 1;
+}
+
+message UCDoubleArray {
+    repeated double values = 1;
+}
+
+message UCStringArray {
+    repeated string values = 1;
+}
+
+message UCBoolArray {
+    repeated bool values = 1;
+}
+
+message UCEnum {
+    string value = 1;
+}
+
+
+message UCEnumFlags {
+    repeated string values = 1;
+}
+
+message UCValue {
+	// The kind of value.
+	oneof kind {
+		double number_value = 1;
+		string string_value = 2;
+        UCReference ref_value = 3;
+		bool bool_value = 4;
+        UCCustom custom_value = 5;
+		sfixed64 long_value = 6;
+        sfixed32 int_value = 7;
+        UCEnum enum_value = 8;
+        UCEnumFlags enumflags_value = 9;
+        float float_value = 10;
+
+        bytes bytes_value = 11;
+        google.protobuf.Timestamp datetime_value = 12;
+        
+        UCFloatArray float_array = 13;
+        UCDoubleArray double_array = 14;
+        UCIntArray int_array = 15;
+        UCLongArray long_array = 16;
+        UCStringArray string_array = 17;
+        UCBoolArray bool_array = 18;
+        
+        UCCustomArray custom_array = 19;
+        //Todo: TimestampArray
+	}
+}
